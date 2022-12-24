@@ -1,7 +1,10 @@
 #pragma once
 
 #include <iostream>
-
+/*переименовать stroka -> string
+ * очевидно, что мы не используем
+ * транслитицизмы
+ * */
 namespace bmstu {
     template<typename T>
     class basic_string;
@@ -60,7 +63,7 @@ namespace bmstu {
 
 /// Геттер на си-строку
         const T *c_str() const {
-            return static_cast<const T* >(ptr_);
+            return static_cast<const T * >(ptr_);
         }
 
 /// Геттер на размер
@@ -114,14 +117,16 @@ namespace bmstu {
             return result;
         }
 
-        template<class OS> ///типа std::ostream
+        template<class OS>
+        ///типа std::ostream
         /* скорее так правильно что делать для других потоков*/
         friend OS &operator<<(OS &os, const basic_string<T> &obj) {
             os << obj.c_str();
             return os;
         }
 
-        template<class IS>///типа std::istream
+        template<class IS>
+        ///типа std::istream
         friend IS &operator>>(IS &is, basic_string<T> &obj) {
             basic_string result;
             T buf = ' ';
